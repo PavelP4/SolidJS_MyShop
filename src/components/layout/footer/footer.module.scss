@@ -1,0 +1,9 @@
+@use "../../../common/styles.scss" as common;
+
+.container {
+  width: 100%;
+  height: common.$footer-height;
+  padding: 0;
+  margin: 0;
+  background-color: rgb(181, 185, 189);
+}

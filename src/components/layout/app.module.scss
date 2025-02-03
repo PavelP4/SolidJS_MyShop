@@ -1,0 +1,7 @@
+@use "../../common/styles.scss" as common;
+
+.content {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  height: calc(100vh - common.$header-height - common.$footer-height);
+}

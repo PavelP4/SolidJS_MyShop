@@ -1,32 +1,22 @@
 import {lazy} from "solid-js";
-import preloadDetails from "../components/home-details/home-details.data";
 import {RouteDefinition} from "@solidjs/router";
 
 export const routes: RouteDefinition[] = [
   {
     path: "/",
-    component: lazy(() => import("../components/home"))
+    component: lazy(() => import("../components/home/home.component"))
   },
   {
-    path: "/home",
-    children: [
-      {
-        path: "/",
-        component: lazy(() => import("../components/home"))
-      },
-      {
-        path: "/details/:id?",
-        component: lazy(() => import("../components/home-details/home-details.component")),
-        preload: preloadDetails,
-        matchFilters: {
-          id: /^\d+$/
-        }
-      }
-    ]
+    path: "/orders",
+    component: lazy(() => import("../components/order/order-list/order-list.component"))
   },
   {
-    path: "/about",
-    component: lazy(() => import("../components/about"))
+    path: "/catalog/items",
+    component: lazy(() => import("../components/catalog/catalog-list/catalog-list.component"))
+  },
+  {
+    path: "/settings/user-profile",
+    component: lazy(() => import("../components/settings/user-profile/user-profile.component"))
   },
   {
     path: "*404",

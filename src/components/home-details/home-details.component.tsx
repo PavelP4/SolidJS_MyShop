@@ -1,7 +1,6 @@
 import {useParams} from "@solidjs/router";
 import styles from "./home-details.module.scss";
 import { type Component } from "solid-js";
-import {Accordion, Carousel, Container, Nav, Navbar} from "solid-bootstrap";
 
 interface HomeDetailsProps {
   userName: string;
