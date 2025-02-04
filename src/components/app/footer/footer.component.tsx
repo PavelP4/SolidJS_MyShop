@@ -8,7 +8,9 @@ const Footer: Component<FooterProps> = (props: FooterProps) => {
 
   return (
     <div class={styles.container}>
-      <footer>Footer</footer>
+      <footer>
+        <span>Made in <s>China</s> Belarus, 2025</span>
+      </footer>
     </div>
   );
 }
