@@ -9,7 +9,7 @@ const Home: Component<HomeProps> = (props: HomeProps) => {
 
   return (
     <>
-      <h1>Welcome to our fake shop!!!</h1>
+      <h1>Welcome to the shop!!!</h1>
     </>
   )
 }

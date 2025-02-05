@@ -6,6 +6,7 @@ interface CatalogListProps {
 }
 
 const CatalogList: Component<CatalogListProps> = (props: CatalogListProps) => {
+
   return (
     <>
       <h1>Catalog items</h1>

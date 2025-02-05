@@ -1,0 +1,22 @@
+{
+  "app": {
+    "view-error": "Etwas ist schiefgelaufen..."
+  },
+  "header": {
+    "actions": {
+      "login": "Login",
+      "logout": "Ausloggen"
+    }
+  },
+  "navigation": {
+    "orders": {
+      "title": "Bestellungen"
+    },
+    "catalog": {
+      "title": "Katalog"
+    },
+    "settings": {
+      "title": "Einstellungen"
+    }
+  }
+}

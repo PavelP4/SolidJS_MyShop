@@ -1,23 +1,22 @@
 import {createSignal, Signal} from "solid-js";
-import {createStore, SetStoreFunction} from "solid-js/store";
-import {AuthResult, UserProfile} from "../services/authentication/auth.model";
+import {createStore, SetStoreFunction, Store, unwrap} from "solid-js/store";
+import {AuthResult, UserProfile} from "../../services/authentication/auth.model";
 
 interface AppStore {
   user: UserProfile;
-  isAuthenticated: Signal<boolean>;
+  isAuthenticated: boolean;
 }
 
 class AppStoreProvider {
+  private readonly _sessionStorageKey: string = 'AppStore';
+
   private _appStore: AppStore;
   private _setAppStore: SetStoreFunction<AppStore>;
 
   private _isInitialized: boolean = false;
 
   constructor() {
-    [this._appStore, this._setAppStore] = createStore<AppStore>({
-      user: this.createEmptyUser(),
-      isAuthenticated: createSignal(false)
-    });
+    [this._appStore, this._setAppStore] = this.createNewOrRestore();
   }
 
   public init(): Promise<void> {
@@ -28,14 +27,18 @@ class AppStoreProvider {
 
     return new Promise((resolve) => {
       setTimeout(() => {
+
+        //update store with the newest loaded data or just ignore
+
         this._isInitialized = true;
+
         resolve();
-      }, 1000); // simulating a network loading
+      }, 10); // simulating a network loading
     });
   }
 
   public get userName(): string {
-    return this._appStore.user.userName;
+    return this._appStore.user.name;
   }
 
   public get User(): UserProfile {
@@ -47,13 +50,11 @@ class AppStoreProvider {
   }
 
   public get isAuthenticated(): boolean {
-    const [isAuthenticated] = this._appStore.isAuthenticated;
-    return isAuthenticated();
+    return this._appStore.isAuthenticated;
   }
 
   private set isAuthenticated(value: boolean) {
-    const [, setIsAuthenticated] = this._appStore.isAuthenticated;
-    setIsAuthenticated(value);
+    this._setAppStore('isAuthenticated', value);
   }
 
   public applyAuthentication(authResult: AuthResult) {
@@ -64,20 +65,45 @@ class AppStoreProvider {
 
     this.isAuthenticated = true;
     this.User = authResult.user || this.createEmptyUser();
+
+    this.preserveStore();
   }
 
   public resetAuthentication() {
     this.isAuthenticated = false;
     this.User = this.createEmptyUser();
-  }
 
-  
+    this.preserveStore();
+  }
 
   private createEmptyUser(): UserProfile {
     return {
-      userId: 0,
-      userName: ''
+      id: 0,
+      name: '',
+      email: '',
+      age: 0
     };
+  }
+
+  private createEmptyStoreData(): AppStore {
+    return {
+      user: this.createEmptyUser(),
+      isAuthenticated: false
+    };
+  }
+
+  private preserveStore() {
+    sessionStorage.setItem(this._sessionStorageKey, JSON.stringify(unwrap(this._appStore)));
+  }
+
+  private createNewOrRestore(): [get: Store<AppStore>, set: SetStoreFunction<AppStore>] {
+    const sessionStorageValue = sessionStorage.getItem(this._sessionStorageKey);
+    
+    let data: AppStore = sessionStorageValue 
+      ? JSON.parse(sessionStorageValue)
+      : this.createEmptyStoreData();
+
+    return createStore<AppStore>(data);
   }
 }
 

@@ -1,0 +1,22 @@
+{
+  "app": {
+    "view-error": "Something goes wrong..."
+  },
+  "header": {
+    "actions": {
+      "login": "Login",
+      "logout": "Logout"
+    }
+  },
+  "navigation": {
+    "orders": {
+      "title": "Orders"
+    },
+    "catalog": {
+      "title": "Catalog"
+    },
+    "settings": {
+      "title": "Settings"
+    }
+  }
+}

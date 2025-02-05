@@ -1,8 +1,9 @@
 import {Button} from 'solid-bootstrap';
 import styles from './header.module.scss';
 import { createEffect, createSignal, Show, type Component } from "solid-js";
-import appStoreProvider from '../../../stores/app.store';
+import appStoreProvider from '../../../stores/app/app.store';
 import Login from '../login/login.component';
+import trs from '../../../services/translation/translation.service';
 
 interface HeaderProps {
 }
@@ -12,8 +13,9 @@ const Header: Component<HeaderProps> = (props: HeaderProps) => {
   const [showLoginModal, setShowLoginModal] = createSignal(false);
 
   createEffect(() => {
-    setLoginBtnTitle(appStoreProvider.isAuthenticated ? 'Logout' : 'Login');
-    //setUserName(appStoreProvider.userName);
+    setLoginBtnTitle(appStoreProvider.isAuthenticated 
+      ? trs.get('header.actions.logout') 
+      : trs.get('header.actions.login'));
   });
   
   const loginHandler = () => {

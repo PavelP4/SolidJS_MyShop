@@ -11,12 +11,14 @@ class AuthService {
         const result = {
           isAuthenticated: userName === 'admin',
           user: {
-            userId: 101,
-            userName: "Jhon Smith"
+            id: 101,
+            name: "Jhon Smith",
+            email: "j.smith@trump-corporation.net",
+            age: 32
           }
         };
         resolve(result);
-      }, 2000);
+      }, 10);
     }) 
   }
 }

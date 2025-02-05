@@ -1,0 +1,11 @@
+@use "../../../common/styles.scss" as common;
+
+
+.title {
+  color: common.$error-text-color;
+}
+
+.text {
+  margin-top: 16px;
+  color: common.$error-text-color;
+}

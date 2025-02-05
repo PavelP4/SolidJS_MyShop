@@ -4,6 +4,8 @@ export interface AuthResult {
 }
 
 export interface UserProfile {
-  userId: number;
-  userName: string;
+  id: number;
+  name: string;
+  email: string;
+  age: number;
 }

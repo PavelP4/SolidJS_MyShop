@@ -1,9 +1,8 @@
 import {Component, createEffect, createSignal, Show, Signal} from 'solid-js';
 import styles from './login.module.scss';
 import {Alert, Button, Form, Modal, Spinner} from 'solid-bootstrap';
-import appStoreProvider from '../../../stores/app.store';
+import appStoreProvider from '../../../stores/app/app.store';
 import authService from '../../../services/authentication/auth.service';
-import {json} from '@solidjs/router';
 
 interface LoginProps {
   show: Signal<boolean>;
@@ -120,7 +119,7 @@ const Login: Component<LoginProps> = (props: LoginProps) => {
           </Form.Group>
         </Form>
         <Alert variant="danger" show={showErrorAlert()} dismissible onClose={() => hideError()}>
-          <Alert.Heading>Authentication error</Alert.Heading>
+          <Alert.Heading>Failed</Alert.Heading>
           <p>
             The user name or password are not valid.
           </p>

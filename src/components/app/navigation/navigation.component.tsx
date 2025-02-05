@@ -1,6 +1,9 @@
 import {A} from "@solidjs/router";
-import {Accordion, Button, ListGroup} from "solid-bootstrap";
+import {Accordion, ListGroup} from "solid-bootstrap";
 import { type Component } from "solid-js";
+import trx from "../../../directives/translation/translation.directive";
+import trs from "../../../services/translation/translation.service";
+
 
 interface NavigationProps {
 }
@@ -11,7 +14,7 @@ const Navigation: Component<NavigationProps> = (props: NavigationProps) => {
     <>
       <Accordion alwaysOpen>
         <Accordion.Item eventKey="0">
-          <Accordion.Header>Orders</Accordion.Header>
+          <Accordion.Header><span use:trx={'navigation.orders.title'}></span></Accordion.Header>
           <Accordion.Body>
             <ListGroup variant="flush">
               <ListGroup.Item>
@@ -21,7 +24,7 @@ const Navigation: Component<NavigationProps> = (props: NavigationProps) => {
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="1">
-          <Accordion.Header>Catalog</Accordion.Header>
+          <Accordion.Header>{trs.get('navigation.catalog.title')}</Accordion.Header>
           <Accordion.Body>
             <ListGroup variant="flush">
               <ListGroup.Item>
@@ -31,7 +34,7 @@ const Navigation: Component<NavigationProps> = (props: NavigationProps) => {
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="2">
-          <Accordion.Header>Settings</Accordion.Header>
+          <Accordion.Header>{trs.get('navigation.settings.title')}</Accordion.Header>
           <Accordion.Body>
             <ListGroup variant="flush">
               <ListGroup.Item>
