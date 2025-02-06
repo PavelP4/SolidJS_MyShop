@@ -1,6 +1,13 @@
 {
   "app": {
-    "view-error": "Something goes wrong..."
+    "view-error": "Something goes wrong...",
+    "notification": {
+      "header": {
+        "info": "Information",
+        "warn": "Warrning",
+        "error": "Error"
+      }
+    }
   },
   "header": {
     "actions": {

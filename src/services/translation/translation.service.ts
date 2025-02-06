@@ -39,7 +39,7 @@ class TranslationService {
       .split(this._keyPathSeparator)
       .reduce((previous, current) => previous[current.trim()], this._trJson);
 
-    return result;
+    return result || key;
   }
 
   private isValidLang(lang: string): boolean {
