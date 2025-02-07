@@ -19,14 +19,15 @@ class TranslationService {
       throw new Error(`The language '${lang}' is not valid.`);
     }
 
-    return fetch(`./src/assets/translations/${lang}.json`)
+    return fetch(`/src/assets/translations/${lang}.json`)
       .then(r => r.json())
       .then(result => {
         this._trJson = result;
 
         this._isInitialized = true;
         return Promise.resolve();
-      });
+      })
+      .catch(reason => console.error("Cannot load translation file", reason));
   }
 
   public get(key: string): string {

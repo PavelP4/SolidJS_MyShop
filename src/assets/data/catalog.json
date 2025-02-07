@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "artnumber": "G01",
+      "name": "T-shirt A",
+      "cost": 25
+    },
+    {
+      "artnumber": "G02",
+      "name": "T-shirt B",
+      "cost": 20
+    },
+    {
+      "artnumber": "G03",
+      "name": "T-shirt C",
+      "cost": 15
+    }
+  ]
+}
